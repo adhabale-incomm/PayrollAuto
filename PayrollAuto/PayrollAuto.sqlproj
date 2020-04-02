@@ -182,5 +182,6 @@
   </ItemGroup>
   <ItemGroup>
     <Build Include="Schema-Model\dbo.address.sql" />
+    <Build Include="Schema-Model\dbo.Pay.sql" />
   </ItemGroup>
 </Project>
