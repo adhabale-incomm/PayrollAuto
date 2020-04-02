@@ -180,4 +180,7 @@
     <None Include="Migrations\001_20200402-0107_adhabale.sql" />
     <None Include="Schema-Model\dbo\Tables\Emp.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <Build Include="Schema-Model\dbo.address.sql" />
+  </ItemGroup>
 </Project>
