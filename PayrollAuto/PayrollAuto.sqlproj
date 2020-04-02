@@ -34,6 +34,7 @@
     <MigrationOrdering>FilePath</MigrationOrdering>
     <EvaluateExecutionOrderOnImport>True</EvaluateExecutionOrderOnImport>
     <TargetDatabaseSet>True</TargetDatabaseSet>
+    <DeployChangesInitialImportDone>True</DeployChangesInitialImportDone>
   </PropertyGroup>
   <!-- SQL CHANGE AUTOMATION OFFLINE SCHEMA MODEL OPTIONS -->
   <PropertyGroup>
@@ -165,11 +166,18 @@
     <Folder Include="Pre-Deployment\" />
     <Folder Include="Post-Deployment\" />
     <Folder Include="Migrations\" />
+    <Folder Include="Schema-Model\" />
+    <Folder Include="Schema-Model\dbo\" />
+    <Folder Include="Schema-Model\dbo\Tables\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Pre-Deployment\01_Create_Database.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Post-Deployment\01_Finalize_Deployment.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Migrations\001_20200402-0107_adhabale.sql" />
+    <None Include="Schema-Model\dbo\Tables\Emp.sql" />
   </ItemGroup>
 </Project>
