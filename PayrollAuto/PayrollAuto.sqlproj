@@ -183,5 +183,6 @@
   <ItemGroup>
     <Build Include="Schema-Model\dbo.address.sql" />
     <Build Include="Schema-Model\dbo.Pay.sql" />
+    <Build Include="Schema-Model\dbo.testtbl.sql" />
   </ItemGroup>
 </Project>
