@@ -8,20 +8,20 @@ pipeline {
         stage('Checkout') {
             steps {
                 echo 'Run Flyway Github'
-                git 'https://github.com/aboussetta/flyway.git'
+                git 'https://github.com/adhabale-incomm/PayrollAuto.git'
 		checkout scm
                 //stash includes: '*.sql', name: 'db' 
-		//sh 'cd /Users/abderrahim.boussetta/.jenkins/workspace/flyway_pipeline_oracle'
-		sh 'cd /var/lib/jenkins/workspace/pipeline_oracle'
+		//sh 'cd /Users/adhabale/.jenkins/workspace/flyway_pipeline_oracle'
+		sh 'cd /var/lib/jenkins/workspace/flyway_pipeline_oracle'
             }
         }
         stage('Build - DB Migration') {
             environment {
-		FLYWAY_LOCATIONS='filesystem:/${WORKSPACE}/tools/sp.sd.flywayrunner.installation.FlywayInstallation/oracle_automation/flyway_420/sql'
-                FLYWAY_URL='jdbc:oracle:thin:@//hhdora-scan.dev.hh.perform.local:1521/DV_FLYWAY'
-                FLYWAY_USER='flyway'
-                FLYWAY_PASSWORD='flyway_123'
-                FLYWAY_SCHEMAS='FLYWAY'
+		FLYWAY_LOCATIONS='filesystem:/${WORKSPACE}/tools/sp.sd.flywayrunner.installation.FlywayInstallation/flyway-6.2.2/sql'
+                FLYWAY_URL='jdbc:oracle:thin:@//sdmdmora01v.unx.incommtech.net:1521/PDEVMDM'
+                FLYWAY_USER='flyway_test'
+                FLYWAY_PASSWORD='flywaytest'
+                FLYWAY_SCHEMAS='PDEVMDM'
 		FLYWAY_PATH='/usr/bin'
             }
             steps {
@@ -32,7 +32,7 @@ pipeline {
 		sh 'ls -ltr /usr/bin'
 		//unstash 'db'
 		//flywayrunner installationName: 'flywaytool', flywayCommand: 'migrate', credentialsId: $FLYWAY_USER/$FLYWAY_PASSWORD, url: $FLYWAY_URL', locations: $FLYWAY_LOCATIONS
-                sh '$FLYWAY_PATH/flyway -user=$FLYWAY_USER -password=$FLYWAY_PASSWORD -url=$FLYWAY_URL -locations=$FLYWAY_LOCATIONS migrate'
+                sh '$FLYWAY_PATH/flyway -user=$FLYWAY_USER -password=$FLYWAY_PASSWORD -url=$FLYWAY_URL -locations=$FLYWAY_LOCATIONS info'
 	    	}
         }
         stage('Parallel - Dev Delivery') {
@@ -48,12 +48,13 @@ pipeline {
                 		}
             		}				
 		        environment {
-				FLYWAY_LOCATIONS='filesystem:/Users/abderrahim.boussetta/.jenkins/workspace/flyway_pipeline_oracle/flyway'
-		                FLYWAY_URL='jdbc:oracle:thin:@//hhdora-scan.dev.hh.perform.local:1521/DVA_FLYWAY'
-		                FLYWAY_USER='flyway_deva'
-		                FLYWAY_PASSWORD='flyway_123'
-		                FLYWAY_SCHEMAS='FLYWAY_DEVA'
-				FLYWAY_PATH='/Users/abderrahim.boussetta/.jenkins/tools/sp.sd.flywayrunner.installation.FlywayInstallation/flyway_420'
+				
+				FLYWAY_LOCATIONS='filesystem:/${WORKSPACE}/tools/sp.sd.flywayrunner.installation.FlywayInstallation/flyway-6.2.2/sql'
+                FLYWAY_URL='jdbc:oracle:thin:@//sdmdmora01v.unx.incommtech.net:1521/PDEVMDM'
+                FLYWAY_USER='flyway_test'
+                FLYWAY_PASSWORD='flywaytest'
+                FLYWAY_SCHEMAS='PDEVMDM'
+				FLYWAY_PATH='/Users/adhabale/.jenkins/tools/sp.sd.flywayrunner.installation.FlywayInstallation/flyway-6.2.2'
 		        }
 		        steps {
 		                echo 'Run Flyway Migration'
@@ -63,12 +64,12 @@ pipeline {
 		 }
 		 stage('DEVB - DB Delivery') {
 		            environment {
-				        FLYWAY_LOCATIONS='filesystem:/Users/abderrahim.boussetta/.jenkins/workspace/flyway_pipeline_oracle/flyway'
-		                FLYWAY_URL='jdbc:oracle:thin:@//hhdora-scan.dev.hh.perform.local:1521/DVB_FLYWAY'
-		                FLYWAY_USER='flyway_devb'
-		                FLYWAY_PASSWORD='flyway_123'
-		                FLYWAY_SCHEMAS='FLYWAY_DEVB'
-						FLYWAY_PATH='/Users/abderrahim.boussetta/.jenkins/tools/sp.sd.flywayrunner.installation.FlywayInstallation/flyway_420'
+				       FLYWAY_LOCATIONS='filesystem:/${WORKSPACE}/tools/sp.sd.flywayrunner.installation.FlywayInstallation/flyway-6.2.2/sql'
+                FLYWAY_URL='jdbc:oracle:thin:@//sdmdmora01v.unx.incommtech.net:1521/PDEVMDM'
+                FLYWAY_USER='flyway_test'
+                FLYWAY_PASSWORD='flywaytest'
+                FLYWAY_SCHEMAS='PDEVMDM'
+						FLYWAY_PATH='/Users/adhabale/.jenkins/tools/sp.sd.flywayrunner.installation.FlywayInstallation/flyway-6.2.2'
 		            }
 		            steps {
 		                echo 'Run Flyway Migration'
@@ -112,12 +113,12 @@ pipeline {
             	parallel {
 			stage('STA - DB Delivery') {
 		            environment {
-					FLYWAY_LOCATIONS='filesystem:/Users/abderrahim.boussetta/.jenkins/workspace/flyway_pipeline_oracle/flyway'
-					FLYWAY_URL='jdbc:oracle:thin:@//hhdora-scan.dev.hh.perform.local:1521/STA_FLYWAY'
-					FLYWAY_USER='flyway_sta'
-					FLYWAY_PASSWORD='flyway_123'
-					FLYWAY_SCHEMAS='FLYWAY_STA'
-					FLYWAY_PATH='/Users/abderrahim.boussetta/.jenkins/tools/sp.sd.flywayrunner.installation.FlywayInstallation/flyway_420'
+				    FLYWAY_LOCATIONS='filesystem:/${WORKSPACE}/tools/sp.sd.flywayrunner.installation.FlywayInstallation/flyway-6.2.2/sql'
+                FLYWAY_URL='jdbc:oracle:thin:@//sqmdmora01v.unx.incommtech.net:1521/PQEVMDM'
+                FLYWAY_USER='mdm'
+                FLYWAY_PASSWORD='mdm'
+                FLYWAY_SCHEMAS='PQEVMDM'
+					FLYWAY_PATH='/Users/adhabale/.jenkins/tools/sp.sd.flywayrunner.installation.FlywayInstallation/flyway-6.2.2'
 		            }
 		            steps {
 		                echo 'Run Flyway Migration'
@@ -127,12 +128,12 @@ pipeline {
 		        }
 		        stage('STB - DB Delivery') {
 		            environment {
-				        FLYWAY_LOCATIONS='filesystem:/Users/abderrahim.boussetta/.jenkins/workspace/flyway_pipeline_oracle/flyway'
-		                FLYWAY_URL='jdbc:oracle:thin:@//hhdora-scan.dev.hh.perform.local:1521/STB_FLYWAY'
-		                FLYWAY_USER='flyway_stb'
-		                FLYWAY_PASSWORD='flyway_123'
-		                FLYWAY_SCHEMAS='FLYWAY_STB'
-						FLYWAY_PATH='/Users/abderrahim.boussetta/.jenkins/tools/sp.sd.flywayrunner.installation.FlywayInstallation/flyway_420'
+				         FLYWAY_LOCATIONS='filesystem:/${WORKSPACE}/tools/sp.sd.flywayrunner.installation.FlywayInstallation/flyway-6.2.2/sql'
+                FLYWAY_URL='jdbc:oracle:thin:@//sqmdmora01v.unx.incommtech.net:1521/PQEVMDM'
+                FLYWAY_USER='mdm'
+                FLYWAY_PASSWORD='mdm'
+                FLYWAY_SCHEMAS='PQEVMDM'
+						FLYWAY_PATH='/Users/abderrahim.boussetta/.jenkins/tools/sp.sd.flywayrunner.installation.FlywayInstallation/flyway-6.2.2'
 		            }
 		            steps {
 		                echo 'Run Flyway Migration'
@@ -155,11 +156,11 @@ pipeline {
     stage('PRODB - DB Deployment') {
         environment {
             FLYWAY_LOCATIONS='filesystem:/Users/abderrahim.boussetta/.jenkins/workspace/flyway_pipeline_oracle/flyway'
-            FLYWAY_URL='jdbc:oracle:thin:@//hhdora-scan.dev.hh.perform.local:1521/PRD_FLYWAY'
-            FLYWAY_USER='flyway_pro'
-            FLYWAY_PASSWORD='flyway_123'
-            FLYWAY_SCHEMAS='FLYWAY'
-			FLYWAY_PATH='/Users/abderrahim.boussetta/.jenkins/tools/sp.sd.flywayrunner.installation.FlywayInstallation/flyway_420'
+            FLYWAY_URL='jdbc:oracle:thin:@//stmdmora01v.unx.incommtech.net/PINTMDM'
+            FLYWAY_USER='mdm'
+            FLYWAY_PASSWORD='mdm'
+            FLYWAY_SCHEMAS='PINTMDM'
+			FLYWAY_PATH='/Users/adhabale/.jenkins/tools/sp.sd.flywayrunner.installation.FlywayInstallation/flyway-6.2.2'
         }
         steps {
             echo 'Run Flyway Migration'
