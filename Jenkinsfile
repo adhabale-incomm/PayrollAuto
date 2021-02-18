@@ -10,7 +10,7 @@ pipeline {
  stages {
         stage('Checkout') {
             steps {
-		    
+		PATH = "C:\\Program Files\\Git\\usr\\bin;C:\\Program Files\\Git\\bin;${env.PATH}"    
                 echo 'Run Flyway Github'
                 git 'https://github.com/adhabale-incomm/PayrollAuto.git'
 		checkout scm
