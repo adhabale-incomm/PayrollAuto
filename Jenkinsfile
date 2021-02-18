@@ -4,7 +4,7 @@ pipeline {
         pollSCM('* * * * *')
     }
 	tools {
-		maven 'maven-3.2.5'
+		//maven 'maven-3.2.5'
 		git 'Default'
 	}
 // environment {
