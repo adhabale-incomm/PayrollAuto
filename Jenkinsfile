@@ -4,7 +4,7 @@ pipeline {
         pollSCM('* * * * *')
     }
  environment {
-    PATH = "C:\Program Files\Git\usr\bin;C:\Program Files\Git\bin;C:\Users\adhabale.TS\AppData\Local\Git\cmd;"
+    PATH = "C:\\Program Files\\Git\\usr\\bin;C:\\Program Files\\Git\\bin;C:\\Users\\adhabale.TS\\AppData\\Local\\Git\\cmd;"
 	   // echo 'path successed'
  }
  stages {
