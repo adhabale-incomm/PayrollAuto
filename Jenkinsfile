@@ -3,14 +3,13 @@ pipeline {
     triggers {
         pollSCM('* * * * *')
     }
-   // environment {
-   // PATH = "C:\\Program Files\\Git\\usr\\bin;C:\\Program Files\\Git\\bin;${env.PATH}"
+ environment {
+    PATH = "C:\Program Files\Git\usr\bin;C:\Program Files\Git\bin"
 	   // echo 'path successed'
     
  stages {
         stage('Checkout') {
             
-		PATH = "C:\\Program Files\\Git\\usr\\bin;C:\\Program Files\\Git\\bin;${env.PATH}"  
 		steps {
 		  
                 echo 'Run Flyway Github'
