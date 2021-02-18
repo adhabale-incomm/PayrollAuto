@@ -4,7 +4,7 @@ pipeline {
         pollSCM('* * * * *')
     }
     environment {
-     export PATH = "C:\\Program Files\\Git\\usr\\bin;C:\\Program Files\\Git\\bin;${env.PATH}"
+    PATH = "C:\\Program Files\\Git\\usr\\bin;C:\\Program Files\\Git\\bin;${env.PATH}"
     
    
     stages {
@@ -21,7 +21,7 @@ pipeline {
         }
         stage('Build - DB Migration') {
             environment {
-		FLYWAY_LOCATIONS='filesystem:/${WORKSPACE}/tools/sp.sd.flywayrunner.installation.FlywayInstallation/flyway-6.2.2/sql'
+		FLYWAY_LOCATIONS=filesystem:/${WORKSPACE}/tools/sp.sd.flywayrunner.installation.FlywayInstallation/flyway-6.2.2/sql
                 FLYWAY_URL='jdbc:oracle:thin:@//sdmdmora01v.unx.incommtech.net:1521/PDEVMDM'
                 FLYWAY_USER='flyway_test'
                 FLYWAY_PASSWORD='flywaytest'
