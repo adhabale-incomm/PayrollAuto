@@ -6,7 +6,7 @@ pipeline {
  environment {
     PATH = "C:\Program Files\Git\usr\bin;C:\Program Files\Git\bin"
 	   // echo 'path successed'
-    
+ }
  stages {
         stage('Checkout') {
             
