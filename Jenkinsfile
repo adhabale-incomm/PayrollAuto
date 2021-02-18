@@ -3,10 +3,14 @@ pipeline {
     triggers {
         pollSCM('* * * * *')
     }
- environment {
-    PATH = "C:\\Program Files\\Git\\usr\\bin;C:\\Program Files\\Git\\bin;C:\\Users\\adhabale.TS\\AppData\\Local\\Git\\cmd\\git.exe;C:\\Program Files\\Git\\cmd\\git.exe"
+	tools {
+		maven 'maven-3.2.5'
+		git 'Default'
+	}
+// environment {
+   // PATH = "C:\\Program Files\\Git\\usr\\bin;C:\\Program Files\\Git\\bin;C:\\Users\\adhabale.TS\\AppData\\Local\\Git\\cmd\\git.exe;C:\\Program Files\\Git\\cmd\\git.exe"
 	   // echo 'path successed'
- }
+// }
  stages {
         stage('Checkout') {
             
