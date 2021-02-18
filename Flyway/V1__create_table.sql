@@ -1,0 +1,1 @@
+Create table f_test1(id number(8),name varchar(20))
