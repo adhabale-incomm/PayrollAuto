@@ -33,6 +33,26 @@ pipeline {
 		bat  "cd c:/Program Files (x86)/Jenkins/workspace/flyway_pipeline_oracle"
 		    }
         }
+	       stage('Build - DB Migration') {
+            environment {
+		FLYWAY_LOCATIONS='filesystem:/${WORKSPACE}/tools/sp.sd.flywayrunner.installation.FlywayInstallation/flyway_pipeline_oracle/flyway'
+                FLYWAY_URL='jdbc:oracle:thin:@//sdmdmora01v.unx.incommtech.net:1521/PDEVMDM'
+                FLYWAY_USER='flyway_test'
+                FLYWAY_PASSWORD='flywaytest'
+                FLYWAY_SCHEMAS='PDEVMDM'
+		FLYWAY_PATH='/usr/bin'
+            }
+            steps {
+                echo 'Run Flyway Migration'
+		echo "${WORKSPACE}"
+		sh 'whereis flyway'
+		sh 'flyway info'
+		sh 'ls -ltr /usr/bin'
+		//unstash 'db'
+		//flywayrunner installationName: 'flywaytool', flywayCommand: 'migrate', credentialsId: $FLYWAY_USER/$FLYWAY_PASSWORD, url: $FLYWAY_URL', locations: $FLYWAY_LOCATIONS
+                bat "$FLYWAY_PATH/flyway -user=$FLYWAY_USER -password=$FLYWAY_PASSWORD -url=$FLYWAY_URL -locations=$FLYWAY_LOCATIONS migrate"
+	    	}
+        }
 }
 }
 //}
