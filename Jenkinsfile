@@ -21,7 +21,7 @@ pipeline {
         }
         stage('Build - DB Migration') {
             environment {
-		FLYWAY_LOCATIONS=filesystem:/${WORKSPACE}/tools/sp.sd.flywayrunner.installation.FlywayInstallation/flyway-6.2.2/sql
+		 export FLYWAY_LOCATIONS=filesystem:/${WORKSPACE}/tools/sp.sd.flywayrunner.installation.FlywayInstallation/flyway-6.2.2/sql
                 FLYWAY_URL='jdbc:oracle:thin:@//sdmdmora01v.unx.incommtech.net:1521/PDEVMDM'
                 FLYWAY_USER='flyway_test'
                 FLYWAY_PASSWORD='flywaytest'
