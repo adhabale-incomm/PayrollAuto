@@ -1,3 +1,11 @@
+import hudson.model.*
+import hudson.console.HyperlinkNote
+import hudson.AbortException
+import groovy.xml.MarkupBuilder
+import groovy.xml.*
+import groovy.util.*
+import groovy.json.*
+
 pipeline {
     agent any
     triggers {
