@@ -1,0 +1,1 @@
+Create table test_fly(ID number(10),name varchar(20),location varchar(50))
