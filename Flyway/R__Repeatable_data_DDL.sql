@@ -5,3 +5,12 @@ ADD birth_date DATE ;
 
 ALTER TABLE test_re 
 ADD address varchar(50) ;
+
+ALTER TABLE test_re 
+ADD city varchar(50) ;
+
+ALTER TABLE test_re 
+ADD citystate varchar(50) ;
+
+
+
