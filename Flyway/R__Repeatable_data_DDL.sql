@@ -23,6 +23,9 @@ ADD city varchar(50) ;
 ALTER TABLE test_re 
 ADD citystate varchar(50) ;
 
+ALTER TABLE test_re 
+ADD county varchar(50) ;
+
 
 
 
